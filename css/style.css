@@ -1,0 +1,249 @@
+/* ============================================================
+   style.css - Marquee Cinema
+   Dark "movie theater" theme with gold marquee accents.
+   ============================================================ */
+
+/* ---------- Color variables ---------- */
+:root {
+    --bg:       #0f0f14;
+    --surface:  #1b1b24;
+    --gold:     #f5c518;
+    --red:      #c0392b;
+    --text:     #ececf1;
+    --muted:    #9a9aab;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a { color: var(--gold); text-decoration: none; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+main { padding: 40px 20px; min-height: 60vh; }
+
+/* ---------- Header ---------- */
+.site-header {
+    background: linear-gradient(90deg, #1a0000, var(--red), #1a0000);
+    border-bottom: 3px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.logo { display: flex; align-items: center; gap: 8px; color: #fff; font-size: 1.6rem; font-weight: bold; }
+.logo .accent { color: var(--gold); }
+
+.main-nav ul { list-style: none; display: flex; gap: 8px; }
+
+.main-nav a {
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+.main-nav a:hover,
+.main-nav a.active { background: var(--gold); color: #000; }
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    border: 2px dashed var(--gold);   /* marquee-light feel */
+    border-radius: 12px;
+    background: radial-gradient(circle, #2a1f00 0%, var(--bg) 70%);
+    margin-bottom: 40px;
+}
+.hero h1 { font-size: 2.4rem; color: var(--gold); margin-bottom: 10px; }
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--gold);
+    color: #000;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+.btn:hover { transform: scale(1.05); }
+
+/* ---------- Titles ---------- */
+.section-title, .page-title {
+    color: var(--gold);
+    margin-bottom: 20px;
+    border-left: 5px solid var(--red);
+    padding-left: 12px;
+}
+
+/* ---------- Movie cards ---------- */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.movie-card {
+    background: var(--surface);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.movie-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(245, 197, 24, 0.25);
+}
+
+.poster {
+    position: relative;
+    font-size: 4rem;
+    text-align: center;
+    padding: 30px 0;
+    background: linear-gradient(135deg, #2b0a0a, #3a2a00);
+}
+
+.movie-info { padding: 16px; }
+.movie-info h3 { margin-bottom: 6px; }
+.meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 8px; }
+.next-show { margin-top: 10px; color: var(--gold); font-weight: bold; }
+
+.badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.75rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+
+/* Screen number tag on each card (from the static counter in renderMovieCard) */
+.screen-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 0.75rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--gold);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* Showtime count in the hero (from the recursive countShowtimes) */
+.hero-stats { margin-top: 12px; color: var(--muted); }
+
+/* ---------- Promo ---------- */
+.promo {
+    margin-top: 40px;
+    background: var(--red);
+    padding: 24px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* ---------- Showtimes ---------- */
+.filters { margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+
+.filter-btn {
+    padding: 6px 16px;
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+}
+.filter-btn.active, .filter-btn:hover { background: var(--gold); color: #000; }
+
+.showtimes { width: 100%; border-collapse: collapse; background: var(--surface); }
+.showtimes th, .showtimes td { padding: 14px; text-align: left; border-bottom: 1px solid #2c2c38; }
+.showtimes th { background: #24242f; color: var(--gold); }
+
+.time-chip {
+    display: inline-block;
+    background: #2c2c38;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin: 2px;
+    font-size: 0.85rem;
+}
+
+/* Late-show chips (from the call-by-reference markLateShows) */
+.time-chip.late { background: #2a2050; color: #d8ccff; }
+.legend { color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; }
+
+/* ---------- Contact form ---------- */
+.contact-form { max-width: 500px; display: flex; flex-direction: column; gap: 8px; }
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+}
+
+.notice { padding: 14px; border-radius: 6px; margin-bottom: 20px; }
+.notice.success { background: #1e4620; }
+.notice.error   { background: #5a1a1a; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+    background: #08080b;
+    border-top: 3px solid var(--gold);
+    padding-top: 30px;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+}
+.site-footer h4 { color: var(--gold); margin-bottom: 10px; }
+.site-footer ul { list-style: none; }
+.site-footer li { margin-bottom: 6px; color: var(--muted); }
+.copyright {
+    text-align: center;
+    color: var(--muted);
+    padding: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #222;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 700px) {
+    .nav-toggle { display: block; }
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #1a0000;
+    }
+    .main-nav.open { display: block; }
+    .main-nav ul { flex-direction: column; padding: 10px; }
+    .hero h1 { font-size: 1.8rem; }
+    .showtimes { font-size: 0.85rem; }
+}
