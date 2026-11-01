@@ -1,4 +1,4 @@
-# Marquee Cinema – PHP Header/Footer Assignment (CIS 344, Chapter 5)
+# Marquee Cinema – PHP Assignment (CIS 344)
 
 A movie theater website built with PHP that uses a shared `header.php` and `footer.php`,
 pulled into each content page with `include`.
