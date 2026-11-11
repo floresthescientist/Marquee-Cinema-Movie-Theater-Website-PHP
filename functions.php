@@ -2,29 +2,29 @@
 /**
  * functions.php
  * ------------------------------------------------------------
- * Reusable helper functions for the Marquee Cinema site.
- * Pages load this file with require_once (the site cannot run
+ * reusable helper functions for the marquee cinema site.
+ * pages load this file with require_once (the site cannot run
  * without it, so require is safer than include here).
  *
- * Lesson 5 concepts shown in this file:
- *   - Namespaces .............. namespace Marquee (below)
- *   - Defining functions ...... every function in this file
- *   - Parameters / defaults ... getGreeting(), renderMovieCard(), formField()
- *   - Returning values ........ formatRuntime(), getGreeting(), etc.
- *   - Scope (global/static) ... theaterName(), renderMovieCard()
- *   - Call by reference ....... markLateShows()
- *   - Call by value ........... countShowtimes()
- *   - Recursion ............... countShowtimes()
+ * lesson 5 concepts shown in this file:
+ *   - namespaces .............. namespace Marquee (below)
+ *   - defining functions ...... every function in this file
+ *   - parameters / defaults ... getGreeting(), renderMovieCard(), formField()
+ *   - returning values ........ formatRuntime(), getGreeting(), etc.
+ *   - scope (global/static) ... theaterName(), renderMovieCard()
+ *   - call by reference ....... markLateShows()
+ *   - call by value ........... countShowtimes()
+ *   - recursion ............... countShowtimes()
  * ------------------------------------------------------------
  */
 
-// Namespace keeps our function names from clashing with other code.
-// Pages bring them in with:  use function Marquee\functionName;
+// namespace keeps our function names from clashing with other code.
+// pages bring them in with:  use function Marquee\functionName;
 namespace Marquee;
 
 /**
- * Converts a runtime in minutes to "2h 8m" format.
- * Parameter: $minutes (int)   Returns: string
+ * converts a runtime in minutes to "2h 8m" format.
+ * parameter: $minutes (int)   returns: string
  */
 function formatRuntime($minutes) {
     $hours = floor($minutes / 60);
@@ -33,8 +33,8 @@ function formatRuntime($minutes) {
 }
 
 /**
- * Returns a greeting based on the hour of the day.
- * DEFAULT PARAMETER: if no hour is passed in, the current hour is used.
+ * returns a greeting based on the hour of the day.
+ * default parameter: if no hour is passed in, the current hour is used.
  */
 function getGreeting($hour = null) {
     if ($hour === null) {
@@ -50,9 +50,9 @@ function getGreeting($hour = null) {
 }
 
 /**
- * Returns the theater's name.
- * SCOPE: variables created outside a function are not visible inside it.
- * The "global" keyword gives this function access to $theaterName,
+ * returns the theater's name.
+ * scope: variables created outside a function are not visible inside it.
+ * the "global" keyword gives this function access to $theaterName,
  * which is defined in data.php.
  */
 function theaterName() {
@@ -61,9 +61,9 @@ function theaterName() {
 }
 
 /**
- * Builds the HTML for one movie card and RETURNS it as a string.
- * DEFAULT PARAMETER: $showSummary is true unless the caller passes false.
- * STATIC VARIABLE: $screen keeps its value between calls, so each card
+ * builds the html for one movie card and returns it as a string.
+ * default parameter: $showSummary is true unless the caller passes false.
+ * static variable: $screen keeps its value between calls, so each card
  * gets the next screen number (1, 2, 3...) without using a global.
  */
 function renderMovieCard($movie, $showSummary = true) {
@@ -82,7 +82,7 @@ function renderMovieCard($movie, $showSummary = true) {
         $html .= '    <p>' . htmlspecialchars($movie['summary']) . '</p>';
     }
 
-    // Show only the first showtime as a teaser
+    // show only the first showtime as a teaser
     $html .= '    <p class="next-show">Next show: ' . $movie['times'][0] . '</p>';
     $html .= '  </div>';
     $html .= '</article>';
@@ -91,27 +91,27 @@ function renderMovieCard($movie, $showSummary = true) {
 }
 
 /**
- * Counts every showtime across all movies.
- * RECURSION: the function calls itself on a smaller list each time
+ * counts every showtime across all movies.
+ * recursion: the function calls itself on a smaller list each time
  * until the list is empty (the "base case").
- * CALL BY VALUE: $movies is a copy, so array_shift() below does NOT
+ * call by value: $movies is a copy, so array_shift() below does not
  * change the caller's original $movies array.
  */
 function countShowtimes($movies) {
-    // Base case: no movies left
+    // base case: no movies left
     if (empty($movies)) {
         return 0;
     }
 
-    // Take the first movie off the copy, then recurse on the rest
+    // take the first movie off the copy, then recurse on the rest
     $first = array_shift($movies);
     return count($first['times']) + countShowtimes($movies);
 }
 
 /**
- * Adds a 'late_times' list to each movie (shows starting at or after
- * $cutoffHour, default 9 PM).
- * CALL BY REFERENCE: the & means we change the caller's actual array
+ * adds a 'late_times' list to each movie (shows starting at or after
+ * $cutoffHour, default 9 pm).
+ * call by reference: the & means we change the caller's actual array
  * instead of a copy, so nothing needs to be returned.
  */
 function markLateShows(array &$movies, $cutoffHour = 21) {
@@ -127,9 +127,9 @@ function markLateShows(array &$movies, $cutoffHour = 21) {
 }
 
 /**
- * Form-generation function: returns a label plus an input or textarea.
- * DEFAULT PARAMETERS: $type defaults to "text", $value to empty.
- * Output is escaped with htmlspecialchars() to block injected HTML.
+ * form-generation function: returns a label plus an input or textarea.
+ * default parameters: $type defaults to "text", $value to empty.
+ * output is escaped with htmlspecialchars() to block injected html.
  */
 function formField($label, $name, $type = 'text', $value = '') {
     $safeValue = htmlspecialchars($value);
