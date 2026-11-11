@@ -1,10 +1,10 @@
 <?php
 /**
- * contact.php - Contact page
+ * contact.php - contact page
  * ------------------------------------------------------------
- * Displays a contact form built with the formField() function.
- * When submitted, the same page processes the form and shows
- * a thank-you message. (No email is actually sent — this is a demo.)
+ * displays a contact form built with the formField() function.
+ * when submitted, the same page processes the form and shows
+ * a thank-you message. (no email is actually sent — this is a demo.)
  * ------------------------------------------------------------
  */
 
@@ -22,13 +22,13 @@ $submitted = false;
 $error     = "";
 $name = $email = $message = "";   // start empty so the form fields have a value
 
-// Only run this block when the form is submitted (POST request)
+// only run this block when the form is submitted (post request)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name    = trim($_POST['name'] ?? '');
     $email   = trim($_POST['email'] ?? '');
     $message = trim($_POST['message'] ?? '');
 
-    // Basic validation
+    // basic validation
     if ($name === '' || $email === '' || $message === '') {
         $error = "Please fill out every field.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <h1 class="page-title">Contact Us</h1>
 
 <?php if ($submitted): ?>
-    <!-- Success message (htmlspecialchars blocks injected HTML/scripts) -->
+    <!-- success message (htmlspecialchars blocks injected html/scripts) -->
     <div class="notice success">
         Thanks, <?php echo htmlspecialchars($name); ?>!
         We'll reply to <?php echo htmlspecialchars($email); ?> soon.
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="notice error"><?php echo $error; ?></div>
     <?php endif; ?>
 
-    <!-- Each field comes from formField(); the value keeps what the user typed -->
+    <!-- each field comes from formField(); the value keeps what the user typed -->
     <form method="post" action="contact.php" class="contact-form">
         <?php echo formField("Name", "name", "text", $name); ?>
         <?php echo formField("Email", "email", "email", $email); ?>
