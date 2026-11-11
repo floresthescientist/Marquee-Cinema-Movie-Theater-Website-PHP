@@ -1,9 +1,9 @@
 <?php
 /**
- * showtimes.php - Showtimes page
+ * showtimes.php - showtimes page
  * ------------------------------------------------------------
- * Lists every movie with all of its showtimes.
- * Includes a genre filter that uses the URL (?genre=Horror)
+ * lists every movie with all of its showtimes.
+ * includes a genre filter that uses the url (?genre=Horror)
  * and highlights late shows using a call-by-reference function.
  * ------------------------------------------------------------
  */
@@ -18,19 +18,19 @@ $currentPage = "showtimes";
 
 include 'header.php';
 
-// Pass $movies BY REFERENCE: the function adds 'late_times' to our actual array
+// pass $movies by reference: the function adds 'late_times' to our actual array
 markLateShows($movies);
 
-// Read the selected filter from the URL; default is "All"
+// read the selected filter from the url; default is "all"
 $selected = isset($_GET['genre']) ? $_GET['genre'] : "All";
 
-// Filter options that match words in the movie genres
+// filter options that match words in the movie genres
 $filters = ["All", "Action", "Comedy", "Horror", "Family"];
 ?>
 
 <h1 class="page-title">Today's Showtimes</h1>
 
-<!-- Genre filter buttons -->
+<!-- genre filter buttons -->
 <div class="filters">
     <?php foreach ($filters as $filter): ?>
         <a href="showtimes.php?genre=<?php echo urlencode($filter); ?>"
@@ -42,7 +42,7 @@ $filters = ["All", "Action", "Comedy", "Horror", "Family"];
 
 <p class="legend"><span class="time-chip late">🌙 Late</span> = starts at 9 PM or later</p>
 
-<!-- Showtimes table -->
+<!-- showtimes table -->
 <table class="showtimes">
     <thead>
         <tr>
@@ -57,7 +57,7 @@ $filters = ["All", "Action", "Comedy", "Horror", "Family"];
         $shown = 0; // counts how many movies match the filter
 
         foreach ($movies as $movie):
-            // Skip movies that don't match the chosen genre
+            // skip movies that don't match the chosen genre
             if ($selected !== "All" && stripos($movie['genre'], $selected) === false) {
                 continue;
             }
@@ -79,7 +79,7 @@ $filters = ["All", "Action", "Comedy", "Horror", "Family"];
         <?php endforeach; ?>
 
         <?php if ($shown === 0): ?>
-            <!-- Message when no movies match the filter -->
+            <!-- message when no movies match the filter -->
             <tr><td colspan="4">No movies found for that genre today.</td></tr>
         <?php endif; ?>
     </tbody>
