@@ -1,22 +1,22 @@
 <?php
 /**
- * index.php - Home page
+ * index.php - home page
  * ------------------------------------------------------------
- * Shows a welcome banner and a "Now Showing" grid of movies.
- * Demonstrates require (critical files) vs include (layout files).
+ * shows a welcome banner and a "now showing" grid of movies.
+ * demonstrates require (critical files) vs include (layout files).
  * ------------------------------------------------------------
  */
 
 // 1. require_once: the page cannot work without these files.
-//    If one is missing, require stops with a fatal error,
+//    if one is missing, require stops with a fatal error,
 //    while include would only warn and keep going.
 require_once 'functions.php';
 require_once 'data.php';
 
-// Bring in the namespaced functions this page uses
+// bring in the namespaced functions this page uses
 use function Marquee\{getGreeting, renderMovieCard, countShowtimes};
 
-// 2. Set page-specific variables used inside header.php
+// 2. set page-specific variables used inside header.php
 $pageTitle   = "Home";
 $currentPage = "home";
 
@@ -24,7 +24,7 @@ $currentPage = "home";
 include 'header.php';
 ?>
 
-<!-- Hero banner -->
+<!-- hero banner -->
 <section class="hero">
     <!-- getGreeting() is called with no argument, so its default (current hour) is used -->
     <h1><?php echo getGreeting(); ?>, movie fans!</h1>
@@ -39,7 +39,7 @@ include 'header.php';
     <a href="showtimes.php" class="btn">View Showtimes</a>
 </section>
 
-<!-- Now Showing grid: renderMovieCard() returns the HTML for each card -->
+<!-- now showing grid: renderMovieCard() returns the html for each card -->
 <section>
     <h2 class="section-title">Now Showing</h2>
     <div class="movie-grid">
@@ -49,7 +49,7 @@ include 'header.php';
     </div>
 </section>
 
-<!-- Snack bar promo -->
+<!-- snack bar promo -->
 <section class="promo">
     <h2>🍿 Tuesday Deal</h2>
     <p>Every Tuesday: $6 tickets and free popcorn refills all day.</p>
