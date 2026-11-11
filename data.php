@@ -2,14 +2,14 @@
 /**
  * data.php
  * ------------------------------------------------------------
- * Site settings and movie data shared by every page.
- * Keeping it in one file means we only update movies in one place.
- * (In a later project this could come from a MySQL database.)
- * Helper functions live in functions.php.
+ * site settings and movie data shared by every page.
+ * keeping it in one file means we only update movies in one place.
+ * (in a later project this could come from a mysql database.)
+ * helper functions live in functions.php.
  * ------------------------------------------------------------
  */
 
-// Global variable read by theaterName() in functions.php (see "global" keyword)
+// global variable read by theaterName() in functions.php (see "global" keyword)
 $theaterName = "Marquee Cinema";
 
 $movies = [
