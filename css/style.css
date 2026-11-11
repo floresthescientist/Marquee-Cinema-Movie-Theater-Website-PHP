@@ -1,9 +1,9 @@
 /* ============================================================
-   style.css - Marquee Cinema
-   Dark "movie theater" theme with gold marquee accents.
+   style.css - marquee cinema
+   dark "movie theater" theme with gold marquee accents.
    ============================================================ */
 
-/* ---------- Color variables ---------- */
+/* ---------- color variables ---------- */
 :root {
     --bg:       #0f0f14;
     --surface:  #1b1b24;
@@ -13,7 +13,7 @@
     --muted:    #9a9aab;
 }
 
-/* ---------- Base ---------- */
+/* ---------- base ---------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -29,7 +29,7 @@ a { color: var(--gold); text-decoration: none; }
 
 main { padding: 40px 20px; min-height: 60vh; }
 
-/* ---------- Header ---------- */
+/* ---------- header ---------- */
 .site-header {
     background: linear-gradient(90deg, #1a0000, var(--red), #1a0000);
     border-bottom: 3px solid var(--gold);
@@ -69,7 +69,7 @@ main { padding: 40px 20px; min-height: 60vh; }
     cursor: pointer;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- hero ---------- */
 .hero {
     text-align: center;
     padding: 60px 20px;
@@ -94,7 +94,7 @@ main { padding: 40px 20px; min-height: 60vh; }
 }
 .btn:hover { transform: scale(1.05); }
 
-/* ---------- Titles ---------- */
+/* ---------- titles ---------- */
 .section-title, .page-title {
     color: var(--gold);
     margin-bottom: 20px;
@@ -102,7 +102,7 @@ main { padding: 40px 20px; min-height: 60vh; }
     padding-left: 12px;
 }
 
-/* ---------- Movie cards ---------- */
+/* ---------- movie cards ---------- */
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -143,7 +143,7 @@ main { padding: 40px 20px; min-height: 60vh; }
     margin-right: 4px;
 }
 
-/* Screen number tag on each card (from the static counter in renderMovieCard) */
+/* screen number tag on each card (from the static counter in renderMovieCard) */
 .screen-tag {
     position: absolute;
     top: 10px;
@@ -155,10 +155,10 @@ main { padding: 40px 20px; min-height: 60vh; }
     border-radius: 4px;
 }
 
-/* Showtime count in the hero (from the recursive countShowtimes) */
+/* showtime count in the hero (from the recursive countShowtimes) */
 .hero-stats { margin-top: 12px; color: var(--muted); }
 
-/* ---------- Promo ---------- */
+/* ---------- promo ---------- */
 .promo {
     margin-top: 40px;
     background: var(--red);
@@ -167,7 +167,7 @@ main { padding: 40px 20px; min-height: 60vh; }
     text-align: center;
 }
 
-/* ---------- Showtimes ---------- */
+/* ---------- showtimes ---------- */
 .filters { margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
 
 .filter-btn {
@@ -190,11 +190,11 @@ main { padding: 40px 20px; min-height: 60vh; }
     font-size: 0.85rem;
 }
 
-/* Late-show chips (from the call-by-reference markLateShows) */
+/* late-show chips (from the call-by-reference markLateShows) */
 .time-chip.late { background: #2a2050; color: #d8ccff; }
 .legend { color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; }
 
-/* ---------- Contact form ---------- */
+/* ---------- contact form ---------- */
 .contact-form { max-width: 500px; display: flex; flex-direction: column; gap: 8px; }
 .contact-form input,
 .contact-form textarea {
@@ -209,7 +209,7 @@ main { padding: 40px 20px; min-height: 60vh; }
 .notice.success { background: #1e4620; }
 .notice.error   { background: #5a1a1a; }
 
-/* ---------- Footer ---------- */
+/* ---------- footer ---------- */
 .site-footer {
     background: #08080b;
     border-top: 3px solid var(--gold);
@@ -231,7 +231,7 @@ main { padding: 40px 20px; min-height: 60vh; }
     border-top: 1px solid #222;
 }
 
-/* ---------- Mobile ---------- */
+/* ---------- mobile ---------- */
 @media (max-width: 700px) {
     .nav-toggle { display: block; }
     .main-nav {
